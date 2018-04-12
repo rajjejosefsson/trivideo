@@ -24,6 +24,7 @@ class StartPage extends Component {
             className="startpage__input"
             value={this.state.roomName}
             placeholder="Create a room or join to one!"
+            onKeyPress={({key}) => key === 'Enter' ? this.onSubmit() : null}
             onChange={e => this.setState({ roomName: e.target.value })}
           />
           <button className="startpage__go-btn" onClick={this.onSubmit}>

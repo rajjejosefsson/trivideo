@@ -85,7 +85,7 @@ class CallPage extends Component {
   };
 
   render() {
-    const { username, chat } = this.state;
+    const { username, chat, message } = this.state;
     return (
       <div>
         <div>
@@ -113,6 +113,7 @@ class CallPage extends Component {
             })}
           </ul>
           <input
+            value={message}
             onChange={({ target: { value } }) =>
               this.setState({ message: value })
             }

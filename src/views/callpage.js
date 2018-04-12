@@ -15,12 +15,12 @@ class CallPage extends Component {
     });
 
     // a peer video has been added
-    this.webrtc.on("videoAdded", function(video, peer) {
+    this.webrtc.on("videoAdded", (video, peer) => {
       console.log("video added", peer);
     });
 
     // we have to wait until it's ready
-    this.webrtc.on("readyToCall", function() {
+    this.webrtc.on("readyToCall", () => {
       // you can name it anything
       this.webrtc.joinRoom(props.room);
     });
@@ -32,7 +32,6 @@ class CallPage extends Component {
   };
 
   render() {
-    const { room } = this.props;
     return (
       <div>
         <h1>Hello</h1>

@@ -33,13 +33,16 @@ class CallPage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hello</h1>
-        <div id="container" />
-        <video id="localVideo" />
-        <div id="remoteVideos" />
-        <button onClick={this.muteMicroHandler()}> fuck mute </button>
-      </div>
+      <React.Fragment>
+        <header>
+        </header>
+        <main>
+          <h1>Hello</h1>
+          <video id="localVideo" />
+          <div id="remoteVideos" />
+          <button onClick={this.muteMicroHandler}> fuck mute </button>
+        </main>
+      </React.Fragment>
     );
   }
 }

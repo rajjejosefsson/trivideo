@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import SimpleWebRTC from "simplewebrtc";
 
 class CallPage extends Component {
+  webrct = null;
   constructor(props) {
     super();
-    let webrtc = new SimpleWebRTC({
+    this.webrtc = new SimpleWebRTC({
       // the id/element dom element that will hold "our" video
       localVideoEl: "localVideo",
       // the id/element dom element that will hold remote videos
@@ -14,16 +15,21 @@ class CallPage extends Component {
     });
 
     // a peer video has been added
-    webrtc.on("videoAdded", function(video, peer) {
+    this.webrtc.on("videoAdded", function(video, peer) {
       console.log("video added", peer);
     });
 
     // we have to wait until it's ready
-    webrtc.on("readyToCall", function() {
+    this.webrtc.on("readyToCall", function() {
       // you can name it anything
-      webrtc.joinRoom(props.room);
+      this.webrtc.joinRoom(props.room);
     });
+
   }
+
+  muteMicroHandler = () => {
+    this.webrtc.mute();
+  };
 
   render() {
     const { room } = this.props;
@@ -33,6 +39,7 @@ class CallPage extends Component {
         <div id="container" />
         <video id="localVideo" />
         <div id="remoteVideos" />
+        <button onClick={this.muteMicroHandler()}> fuck mute </button>
       </div>
     );
   }

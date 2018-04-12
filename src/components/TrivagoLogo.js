@@ -10,7 +10,7 @@ const TrivagoLogo = () => (
     width="128px"
     height="32px"
     viewBox="0 0 128 32"
-    enable-background="new 0 0 128 32"
+    enableBackground="new 0 0 128 32"
   >
     <g>
       <polygon

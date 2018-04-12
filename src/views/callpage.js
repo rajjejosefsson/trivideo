@@ -42,9 +42,11 @@ class CallPage extends Component {
           <span className="header__room">Room: {room}</span>
         </header>
         <main>
-          <video id="localVideo" />
           <div id="remoteVideos" />
-          <button onClick={this.muteMicroHandler}> fuck mute </button>
+          <div className="videos_you">
+            <p>You</p>
+            <video id="localVideo" />
+          </div>
         </main>
       </React.Fragment>
     );

@@ -21,11 +21,13 @@ class StartPage extends Component {
 
         <div className="startpage__inputGroup">
           <input
+            className="startpage__input"
             value={this.state.roomName}
+            placeholder="Create a room or join to one!"
             onChange={e => this.setState({ roomName: e.target.value })}
           />
           <button className="startpage__go-btn" onClick={this.onSubmit}>
-            Goo
+            Let's go!
           </button>
         </div>
       </div>

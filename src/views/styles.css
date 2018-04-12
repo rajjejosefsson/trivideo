@@ -10,34 +10,46 @@
   display: flex;
 }
 
-startpage__go-btn {
-  color: green;
+
+.startpage__input {
+  width: 600px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid #9ba2a6;
+  font-size: 16px
 }
 
-video {
-  width: auto;
-  border: 2px solid red;
+.startpage__input:focus {
+  outline: 1px dotted #37454d;
+  outline-offset: -3px;
+  box-shadow: none;
 }
 
-.u-display--flex {
-  display: flex;
-} 
 
-.u-jutify-content--space-between {
-  justify-content: space-between;
+.startpage__go-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #007fad;
+  border: 1px solid #007fad;
+  font-size: 16px
 }
+
+
 .startpage__title {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 24px;
+	font-size: 38px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 800;
-  line-height: 26.4px;
+  line-height: 38px;
   color: #37454d;
 }
 
 .startpage__header {
   display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .startpage__wabi {

@@ -20,6 +20,7 @@ class CallPage extends Component {
 
     // a peer video has been added
     this.webrtc.on("videoAdded", (video, peer) => {
+      video.controls = true;
       console.log("video added", peer);
     });
 

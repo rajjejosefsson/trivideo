@@ -23,7 +23,7 @@ class StartPage extends Component {
             onChange={e => this.setState({ roomName: e.target.value })}
           />
           <button className="startpage__go-btn" onClick={this.onSubmit}>
-            Goo
+            Go
           </button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SimpleWebRTC from "simplewebrtc";
+import TrivagoLogo from "../components/TrivagoLogo";
 
 class CallPage extends Component {
   webrct = null;
@@ -34,7 +35,9 @@ class CallPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <header>
+        <header className="header">
+          <TrivagoLogo />
+          <span className="header__title">trivago</span>
         </header>
         <main>
           <h1>Hello</h1>

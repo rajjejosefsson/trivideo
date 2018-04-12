@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SimpleWebRTC from "simplewebrtc";
+import TrivagoLogo from "../components/TrivagoLogo";
 
 class CallPage extends Component {
   state = {
@@ -53,13 +54,18 @@ class CallPage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hello</h1>
-        <div id="container" />
-        <video id="localVideo" />
-        <div id="remoteVideos" />
-        <button onClick={this.toggleMuteHandler()}> {this.state.mute.muteText} </button>
-      </div>
+      <React.Fragment>
+        <header className="header">
+          <TrivagoLogo />
+          <span className="header__title">trivago</span>
+        </header>
+        <main>
+          <h1>Hello</h1>
+          <video id="localVideo" />
+          <div id="remoteVideos" />
+          <button onClick={this.toggleMuteHandler()}> {this.state.mute.muteText} </button>
+        </main>
+      </React.Fragment>
     );
   }
 }

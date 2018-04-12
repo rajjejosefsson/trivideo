@@ -91,6 +91,13 @@ input {
   border-radius: 0.28571429rem;
 }
 
+#remoteVideos video {
+  height: 150px;
+}
+#localVideo {
+  height: 150px;
+}
+
 input:focus {
   border-color: #85b7d9;
   background: #ffffff;
@@ -104,4 +111,23 @@ input:active {
   background: #fafafa;
   color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
+}
+
+.videoContainer {
+  position: relative;
+  width: 200px;
+  height: 150px;
+}
+.videoContainer video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.connectionstate {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
 }

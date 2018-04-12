@@ -1,48 +1,27 @@
 import React, { Component } from "react";
+import SimpleWebRTC from "simplewebrtc";
 
 class CallPage extends Component {
-  componentDidMount() {
-    const { room } = this.props;
-    console.log(room)
-    const phone = window.PHONE({
-      number: this.props.room,
-      publish_key: "pub-c-26f7ecab-7613-4f93-b660-b955d311eb03",
-      subscribe_key: "sub-c-1de50116-3e2c-11e8-a2e8-d2288b7dcaaf",
-      ssl: true
+  constructor(props) {
+    super();
+    let webrtc = new SimpleWebRTC({
+      // the id/element dom element that will hold "our" video
+      localVideoEl: "localVideo",
+      // the id/element dom element that will hold remote videos
+      remoteVideosEl: "remoteVideos",
+      // immediately ask for camera access
+      autoRequestMedia: true
     });
-    let session = null;
 
-    // Start Camera
-    phone.bind("mousedown,touchstart", phone.$("startcam"), event =>
-      phone.camera.start()
-    );
-    // Stop Camera
-    phone.bind("mousedown,touchstart", phone.$("stopcam"), event =>
-      phone.camera.stop()
-    );
-    // Local Camera Display
-    phone.camera.ready(video => {
-      phone.$("video").appendChild(video);
+    // a peer video has been added
+    webrtc.on("videoAdded", function(video, peer) {
+      console.log("video added", peer);
     });
-    // As soon as the phone is ready we can make calls
-    phone.ready(() => {
-      // Start Call
-      phone.bind(
-        "mousedown,touchstart",
-        phone.$("startcall"),
-        event => (session = phone.dial(room))
-      );
-      // Stop Call
-      phone.bind("mousedown,touchstart", phone.$("stopcall"), event =>
-        phone.hangup()
-      );
-    });
-    // When Call Comes In or is to be Connected
-    phone.receive(function(session) {
-      // Display Your Friend's Live Video
-      session.connected(function(session) {
-        phone.$("video-out").appendChild(session.video);
-      });
+
+    // we have to wait until it's ready
+    webrtc.on("readyToCall", function() {
+      // you can name it anything
+      webrtc.joinRoom(props.room);
     });
   }
 
@@ -50,32 +29,10 @@ class CallPage extends Component {
     const { room } = this.props;
     return (
       <div>
-        <div>
-          <input
-            value={room}
-            onChange={({ target: { value } }) => this.setState({ room: value })}
-          />
-          <button id="startcam">Start Camera</button>
-          <button id="stopcam">stop Camera</button>
-          <button id="startcall">startcall</button>
-          <button id="stopcall">Stop Call</button>
-          <div
-            id="video"
-            style={{
-              height: "300px",
-              width: "300px",
-              border: "1px solid black"
-            }}
-          />
-          <div
-            id="video-out"
-            style={{
-              height: "300px",
-              width: "300px",
-              border: "1px solid black"
-            }}
-          />
-        </div>
+        <h1>Hello</h1>
+        <div id="container" />
+        <video id="localVideo" />
+        <div id="remoteVideos" />
       </div>
     );
   }

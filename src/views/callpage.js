@@ -4,11 +4,7 @@ import TrivagoLogo from "../components/TrivagoLogo";
 
 class CallPage extends Component {
   state = {
-    mute: {
-      isMuted: false,
-      muteText: 'I no wanna talks',
-      color: 'red'
-    }
+    isMuted: false
   };
   webrct = null;
   constructor(props) {
@@ -32,24 +28,18 @@ class CallPage extends Component {
       // you can name it anything
       this.webrtc.joinRoom(props.room);
     });
-
   }
 
   toggleMuteHandler = () => {
-    let { mute } = this.state; 
-    const copyMute = {...mute};
-    if (!copyMute.isMuted) {
+    this.setState(prevState => ({
+      isMute: !prevState.isMute
+    }));
+
+    if (!this.state.isMuted) {
       this.webrtc.mute();
-      copyMute.isMuted = true;
-      copyMute.muteText = 'I wanna talks!';
-      copyMute.color = 'green';
     } else {
       this.webrtc.unmute();
-      copyMute.isMuted = false;
-      copyMute.muteText = 'I no wanna talks!';
-      copyMute.color = 'red';
     }
-    this.setState({mute: copyMute});
   };
 
   render() {
@@ -64,7 +54,14 @@ class CallPage extends Component {
         <main>
           <video id="localVideo" />
           <div id="remoteVideos" />
-          <button onClick={this.toggleMuteHandler()}> {this.state.mute.muteText} </button>
+          <button
+            onClick={this.toggleMuteHandler}
+            style={{
+              background: this.state.isMute ? "red" : "green"
+            }}
+          >
+            {this.state.isMute ? "Unmute" : "mute"}
+          </button>
         </main>
       </React.Fragment>
     );

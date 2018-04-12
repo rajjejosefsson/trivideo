@@ -96,9 +96,19 @@ input {
   border-radius: 0.28571429rem;
 }
 
-#remoteVideos video {
-  height: 150px;
+#remoteVideos {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
 }
+
+#remoteVideo vide {
+  width: 100%;
+}
+
 #localVideo {
   height: 150px;
 }

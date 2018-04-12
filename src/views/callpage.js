@@ -4,7 +4,8 @@ import TrivagoLogo from "../components/TrivagoLogo";
 
 class CallPage extends Component {
   state = {
-    isMuted: false
+    isMuted: false,
+    users: 1
   };
   webrct = null;
   constructor(props) {
@@ -20,7 +21,12 @@ class CallPage extends Component {
 
     // a peer video has been added
     this.webrtc.on("videoAdded", (video, peer) => {
-      console.log("video added", peer);
+      video.controls = true;
+      this.setState({ users: this.state.users + 1 });
+    });
+
+    this.webrtc.on("videoRemoved", (video, peer) => {
+      this.setState({ users: this.state.users - 1 });
     });
 
     // we have to wait until it's ready
@@ -76,28 +82,39 @@ class CallPage extends Component {
 
   render() {
     const { room } = this.props;
+    const { users } = this.state;
     return (
       <React.Fragment>
         <header className="header">
           <TrivagoLogo />
           <span className="header__title">trivago</span>
-          <span className="header__room">Room: {room}</span>
+          <span className="header__room">
+            Room: {room} - Users: {users}
+          </span>
         </header>
         <main>
-          <video id="localVideo" />
           <div id="remoteVideos" />
-          <button
-            onClick={this.toggleMuteHandler}
-            style={{ background: this.state.isMute ? "red" : "green" }}
-          >
-            {this.state.isMute ? "Unmute" : "mute"}
-          </button>
-          <button onClick={this.onShareScreen}>Share Screen</button>
 
-          <div
-            style={{ border: "2px solid red", width: "500px", height: "300px" }}
-            id="localScreenContainer"
-          />
+          <div className="videos_you">
+            <p>You</p>
+            <video id="localVideo" />
+            <button
+              onClick={this.toggleMuteHandler}
+              style={{ background: this.state.isMute ? "red" : "green" }}
+            >
+              {this.state.isMute ? "Unmute" : "mute"}
+            </button>
+
+            <button onClick={this.onShareScreen}>Share Screen</button>
+            <div
+              style={{
+                border: "2px solid red",
+                width: "500px",
+                height: "300px"
+              }}
+              id="localScreenContainer"
+            />
+          </div>
         </main>
       </React.Fragment>
     );

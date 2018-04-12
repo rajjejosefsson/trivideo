@@ -28,6 +28,23 @@ class CallPage extends Component {
       // you can name it anything
       this.webrtc.joinRoom(props.room);
     });
+
+    this.webrtc.on("localScreenAdded", function(video) {
+      console.log(" sharing coming");
+
+      video.onclick = function() {
+        video.style.width = video.videoWidth + "px";
+        video.style.height = video.videoHeight + "px";
+      };
+      document.getElementById("localScreenContainer").appendChild(video);
+      document.getElementById("localScreenContainer").show();
+    });
+
+    // local screen removed
+    this.webrtc.on("localScreenRemoved", function(video) {
+      document.getElementById("localScreenContainer").removeChild(video);
+      document.getElementById("localScreenContainer").hide();
+    });
   }
 
   toggleMuteHandler = () => {
@@ -39,6 +56,21 @@ class CallPage extends Component {
       this.webrtc.mute();
     } else {
       this.webrtc.unmute();
+    }
+  };
+
+  onShareScreen = () => {
+    if (this.webrtc.getLocalScreen()) {
+      this.webrtc.stopScreenShare();
+    } else {
+      console.log("start sharing");
+      this.webrtc.shareScreen(err => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("ok");
+        }
+      });
     }
   };
 
@@ -56,12 +88,16 @@ class CallPage extends Component {
           <div id="remoteVideos" />
           <button
             onClick={this.toggleMuteHandler}
-            style={{
-              background: this.state.isMute ? "red" : "green"
-            }}
+            style={{ background: this.state.isMute ? "red" : "green" }}
           >
             {this.state.isMute ? "Unmute" : "mute"}
           </button>
+          <button onClick={this.onShareScreen}>Share Screen</button>
+
+          <div
+            style={{ border: "2px solid red", width: "500px", height: "300px" }}
+            id="localScreenContainer"
+          />
         </main>
       </React.Fragment>
     );

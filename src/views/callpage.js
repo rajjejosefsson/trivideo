@@ -106,14 +106,7 @@ class CallPage extends Component {
             </button>
 
             <button onClick={this.onShareScreen}>Share Screen</button>
-            <div
-              style={{
-                border: "2px solid red",
-                width: "500px",
-                height: "300px"
-              }}
-              id="localScreenContainer"
-            />
+            <div id="localScreenContainer" />
           </div>
         </main>
       </React.Fragment>

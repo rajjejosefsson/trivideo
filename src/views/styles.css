@@ -76,3 +76,8 @@
   line-height: 26px;
   color: #37454d;
 }
+
+.header__room {
+ margin-left: auto;
+ margin-right: 30px;
+}

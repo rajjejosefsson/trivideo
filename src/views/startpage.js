@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./styles.css";
 import TrivagoLogo from "../components/TrivagoLogo";
-import { Route, Redirect, Link } from "react-router";
 
 class StartPage extends Component {
   state = {

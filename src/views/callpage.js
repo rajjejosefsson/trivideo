@@ -3,6 +3,9 @@ import SimpleWebRTC from "simplewebrtc";
 import TrivagoLogo from "../components/TrivagoLogo";
 
 class CallPage extends Component {
+  state = {
+    isMuted: false
+  };
   webrct = null;
   constructor(props) {
     super();
@@ -25,11 +28,18 @@ class CallPage extends Component {
       // you can name it anything
       this.webrtc.joinRoom(props.room);
     });
-
   }
 
-  muteMicroHandler = () => {
-    this.webrtc.mute();
+  toggleMuteHandler = () => {
+    this.setState(prevState => ({
+      isMute: !prevState.isMute
+    }));
+
+    if (!this.state.isMuted) {
+      this.webrtc.mute();
+    } else {
+      this.webrtc.unmute();
+    }
   };
 
   render() {
@@ -46,6 +56,14 @@ class CallPage extends Component {
           <div className="videos_you">
             <p>You</p>
             <video id="localVideo" />
+            <button
+              onClick={this.toggleMuteHandler}
+              style={{
+                background: this.state.isMute ? "red" : "green"
+              }}
+            >
+              {this.state.isMute ? "Unmute" : "mute"}
+            </button>
           </div>
         </main>
       </React.Fragment>

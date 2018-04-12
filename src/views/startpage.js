@@ -7,17 +7,23 @@ class StartPage extends Component {
     roomName: ""
   };
 
+  onSubmit = () => {
+    this.props.history.push("/" + this.state.roomName);
+  };
+
   render() {
     return (
       <div className="container">
         <TrivagoLogo />
-        <h1>trivideo</h1>
+
         <div className="startpage__inputGroup">
           <input
             value={this.state.roomName}
-            onChange={e => this.setState({ roomName: e.value.target })}
+            onChange={e => this.setState({ roomName: e.target.value })}
           />
-          <button className="startpage__go-btn">Go</button>
+          <button className="startpage__go-btn" onClick={this.onSubmit}>
+            Goo
+          </button>
         </div>
       </div>
     );

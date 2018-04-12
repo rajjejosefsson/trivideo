@@ -16,7 +16,6 @@ button {
   background: #e0e1e2 none;
   color: rgba(0, 0, 0, 0.6);
   font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
-  margin: 0.5em;
   padding: 0.78571429em 1.5em 0.78571429em;
   text-transform: none;
   text-shadow: none;
@@ -82,7 +81,6 @@ input {
   display: inline-flex;
   color: rgba(0, 0, 0, 0.87);
   border: 1px solid rgba(34, 36, 38, 0.15);
-  margin: 0.5em;
   max-width: 100%;
   outline: 0;
   text-align: left;

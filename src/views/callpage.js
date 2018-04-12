@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import SimpleWebRTC from "simplewebrtc";
 import TrivagoLogo from "../components/TrivagoLogo";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faMicrophone from "@fortawesome/fontawesome-free-solid/faMicrophone";
+import faMicrophoneSlash from "@fortawesome/fontawesome-free-solid/faMicrophoneSlash";
+import faCamera from "@fortawesome/fontawesome-free-solid/faCamera";
+import faSlideshare from "@fortawesome/fontawesome-free-brands/faSlideshare";
 
 class CallPage extends Component {
   state = {
@@ -82,7 +87,7 @@ class CallPage extends Component {
 
   render() {
     const { room } = this.props;
-    const { users } = this.state;
+    const { users, isMute } = this.state;
     return (
       <React.Fragment>
         <header className="header">
@@ -92,21 +97,30 @@ class CallPage extends Component {
             Room: {room} - Users: {users}
           </span>
         </header>
-        <main>
-          <div id="remoteVideos" />
-
+        <main className="grid">
           <div className="videos_you">
-            <p>You</p>
+            <p className="videos_you__title">You</p>
             <video id="localVideo" />
-            <button
-              onClick={this.toggleMuteHandler}
-              style={{ background: this.state.isMute ? "red" : "green" }}
-            >
-              {this.state.isMute ? "Unmute" : "mute"}
-            </button>
-
-            <button onClick={this.onShareScreen}>Share Screen</button>
+            <div className="videos_you__controls">
+              <button
+                onClick={this.toggleMuteHandler}
+                style={{ background: isMute ? "red" : "green" }}
+              >
+                {isMute ? (
+                  <FontAwesomeIcon size="lg" icon={faMicrophone} />
+                ) : (
+                  <FontAwesomeIcon size="lg" icon={faMicrophoneSlash} />
+                )}
+              </button>
+              <button>
+                <FontAwesomeIcon size="lg" icon={faCamera} />
+              </button>
+              <button onClick={this.onShareScreen} className="btn">
+                <FontAwesomeIcon size="lg" icon={faSlideshare} />
+              </button>
+            </div>
             <div id="localScreenContainer" />
+            <div id="remoteVideos" />
           </div>
         </main>
       </React.Fragment>

@@ -33,14 +33,15 @@ class CallPage extends Component {
   };
 
   render() {
+    const { room } = this.props;
     return (
       <React.Fragment>
         <header className="header">
           <TrivagoLogo />
           <span className="header__title">trivago</span>
+          <span className="header__room">Room: {room}</span>
         </header>
         <main>
-          <h1>Hello</h1>
           <video id="localVideo" />
           <div id="remoteVideos" />
           <button onClick={this.muteMicroHandler}> fuck mute </button>

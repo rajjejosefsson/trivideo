@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import SimpleWebRTC from "simplewebrtc";
 
 class CallPage extends Component {
+  state = {
+    mute: {
+      isMuted: false,
+      muteText: 'I no wanna talks',
+      color: 'red'
+    }
+  };
   webrct = null;
   constructor(props) {
     super();
@@ -27,8 +34,21 @@ class CallPage extends Component {
 
   }
 
-  muteMicroHandler = () => {
-    this.webrtc.mute();
+  toggleMuteHandler = () => {
+    let { mute } = this.state; 
+    const copyMute = {...mute};
+    if (!copyMute.isMuted) {
+      this.webrtc.mute();
+      copyMute.isMuted = true;
+      copyMute.muteText = 'I wanna talks!';
+      copyMute.color = 'green';
+    } else {
+      this.webrtc.unmute();
+      copyMute.isMuted = false;
+      copyMute.muteText = 'I no wanna talks!';
+      copyMute.color = 'red';
+    }
+    this.setState({mute: copyMute});
   };
 
   render() {
@@ -38,7 +58,7 @@ class CallPage extends Component {
         <div id="container" />
         <video id="localVideo" />
         <div id="remoteVideos" />
-        <button onClick={this.muteMicroHandler()}> fuck mute </button>
+        <button onClick={this.toggleMuteHandler()}> {this.state.mute.muteText} </button>
       </div>
     );
   }

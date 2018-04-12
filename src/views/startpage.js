@@ -14,17 +14,14 @@ class StartPage extends Component {
   render() {
     return (
       <div className="container">
-        <span className="startpage__header">
-          <span className="startpage__wabi"><TrivagoLogo /></span>
-          <span className="startpage__title">trivideo</span>
-        </span>
+        <TrivagoLogo style={{ marginBottom: "10px" }} />
 
         <div className="startpage__inputGroup">
           <input
             className="startpage__input"
             value={this.state.roomName}
             placeholder="Create a room or join to one!"
-            onKeyPress={({key}) => key === 'Enter' ? this.onSubmit() : null}
+            onKeyPress={({ key }) => (key === "Enter" ? this.onSubmit() : null)}
             onChange={e => this.setState({ roomName: e.target.value })}
           />
           <button className="startpage__go-btn" onClick={this.onSubmit}>

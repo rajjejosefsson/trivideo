@@ -92,7 +92,6 @@ class CallPage extends Component {
       <React.Fragment>
         <header className="header">
           <TrivagoLogo />
-          <span className="header__title">trivago</span>
           <span className="header__room">
             Room: {room} - Users: {users}
           </span>

@@ -13,3 +13,21 @@
 startpage__go-btn {
   color: green;
 }
+
+.startpage__title {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 800;
+  line-height: 26.4px;
+  color: #37454d;
+}
+
+.startpage__header {
+  display: flex;
+}
+
+.startpage__wabi {
+  padding-right: 8px;
+}

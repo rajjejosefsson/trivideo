@@ -10,7 +10,7 @@ class CallPage extends Component {
       subscribe_key: "sub-c-1de50116-3e2c-11e8-a2e8-d2288b7dcaaf",
       ssl: true
     });
-    let session = phone.dial(room);
+    let session = null;
 
     // Start Camera
     phone.bind("mousedown,touchstart", phone.$("startcam"), event =>

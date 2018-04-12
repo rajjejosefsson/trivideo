@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.startpage__inputGroup {
+  display: flex;
+}
+
+startpage__go-btn {
+  color: green;
+}

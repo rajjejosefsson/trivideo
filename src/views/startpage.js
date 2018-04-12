@@ -14,7 +14,10 @@ class StartPage extends Component {
   render() {
     return (
       <div className="container">
-        <TrivagoLogo />
+        <span className="startpage__header">
+          <span className="startpage__wabi"><TrivagoLogo /></span>
+          <span className="startpage__title">trivideo</span>
+        </span>
 
         <div className="startpage__inputGroup">
           <input

@@ -13,3 +13,17 @@
 startpage__go-btn {
   color: green;
 }
+
+
+video {
+  width: auto;
+  border: 2px solid red;
+}
+
+.u-display--flex {
+  display: flex;
+} 
+
+.u-jutify-content--space-between {
+  justify-content: space-between;
+}
